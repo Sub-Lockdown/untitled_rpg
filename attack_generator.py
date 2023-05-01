@@ -1,6 +1,7 @@
 import itertools
 
 start_cost = 10
+minimum_cost = 1
 
 effects = {
     "area" : -2,
@@ -22,7 +23,7 @@ list = []
 for key in effects:
     list.append(key)
 
-# iterate through combinations, adding valid attacks with cost greater or equal to 1 to attacks list, or adding invalid attacks to invalids
+# iterate through combinations, adding valid attacks with cost greater or equal to minimum_cost to attacks list, or adding invalid attacks to invalids
 attacks = []
 invalids = []
 for L in range(len(list) + 1):
@@ -30,7 +31,7 @@ for L in range(len(list) + 1):
         cost = start_cost
         for mod in subset:
             cost += effects[mod]
-        if cost >= 1:
+        if cost >= minimum_cost:
             attacks.append({subset : cost})
         else:
             invalids.append({subset : cost})
